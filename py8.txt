@@ -21,10 +21,13 @@ print(f"Model Accuracy: {accuracy * 100:.2f}%")
 new_sample = np.array([X_test[0]])
 prediction = clf.predict(new_sample)
 
-prediction_class = "Benign" if prediction == 1 else "Malignant"
+prediction_class = "Benign" if prediction[0] == 1 else "Malignant"
 print(f"Predicted Class for the new sample: {prediction_class}")
 
 plt.figure(figsize=(12,8))
-tree.plot_tree(clf, filled=True, feature_names=list(data.feature_names), class_names=list(data.target_names))
+tree.plot_tree(clf, filled=True, 
+               feature_names=list(data.feature_names), 
+               class_names=list(data.target_names))
 plt.title("Decision Tree - Breast Cancer Dataset")
+plt.tight_layout() 
 plt.show()
